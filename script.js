@@ -112,7 +112,8 @@ const customers = [
 
 // ========== STATE MANAGEMENT ==========
 
-let selectedCustomerId = null;
+let selectedCustomerId = null; // No customer selected by default
+let selectedCategory = 'All'; // Current filter category
 
 // ========== UI RENDERING FUNCTIONS ==========
 
@@ -121,7 +122,12 @@ function renderDevices() {
     const grid = document.getElementById('devicesGrid');
     grid.innerHTML = '';
     
-    devices.forEach(device => {
+    // Filter devices based on selected category
+    const filteredDevices = selectedCategory === 'All' 
+        ? devices 
+        : devices.filter(device => device.category === selectedCategory);
+    
+    filteredDevices.forEach(device => {
         const card = document.createElement('div');
         card.className = 'device-card';
         
@@ -130,7 +136,7 @@ function renderDevices() {
             <h3>${device.name}</h3>
             <p class="device-brand">${device.brand}</p>
             <span class="device-category">${device.category}</span>
-            <p class="device-price">$${device.price}</p>
+            <p class="device-price">${device.price}</p>
             <p class="stock-status ${device.inStock ? 'in-stock' : 'out-of-stock'}">
                 ${device.inStock ? '✓ In Stock' : '✗ Out of Stock'}
             </p>
@@ -330,6 +336,23 @@ function showStatus(message, type) {
     }, 3000);
 }
 
+// Filter devices by category
+function filterByCategory(category) {
+    selectedCategory = category;
+    
+    // Update active button state
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === category) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Re-render devices with new filter
+    renderDevices();
+}
+
 // ========== INITIALIZATION ==========
 
 // Initialize the app when DOM is loaded
@@ -338,4 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCustomers();
     renderCustomerDetails();
     renderPurchaseHistory();
+    
+    // Show hint message on page load
+    showStatus('Please select a customer to continue', 'error');
 });

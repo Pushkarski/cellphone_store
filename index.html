@@ -17,7 +17,15 @@
     <main class="container">
         <!-- Left Column: Devices Catalog -->
         <section class="devices-section">
-            <h2>Available Devices</h2>
+            <div class="devices-header">
+                <h2>Available Devices</h2>
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterByCategory('All')">All</button>
+                    <button class="filter-btn" onclick="filterByCategory('iPhone')">iPhone</button>
+                    <button class="filter-btn" onclick="filterByCategory('Android')">Android</button>
+                    <button class="filter-btn" onclick="filterByCategory('Accessories')">Accessories</button>
+                </div>
+            </div>
             <div class="devices-grid" id="devicesGrid">
                 <!-- Devices will be rendered here by JS -->
             </div>
