@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellphone Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>📱 Cellphone Store</h1>
+        <p>Select a customer and browse our devices</p>
+    </header>
+
+    <div class="status-message" id="statusMessage"></div>
+
+    <main class="container">
+        <!-- Left Column: Devices Catalog -->
+        <section class="devices-section">
+            <h2>Available Devices</h2>
+            <div class="devices-grid" id="devicesGrid">
+                <!-- Devices will be rendered here by JS -->
+            </div>
+        </section>
+
+        <!-- Right Column: Customers & Purchase History -->
+        <aside class="customers-section">
+            <div class="customers-panel">
+                <h2>Customers</h2>
+                <div class="customers-list" id="customersList">
+                    <!-- Customers will be rendered here by JS -->
+                </div>
+            </div>
+
+            <div class="customer-details" id="customerDetails">
+                <h3>Customer Details</h3>
+                <p class="no-selection">No customer selected</p>
+            </div>
+
+            <div class="purchase-history" id="purchaseHistory">
+                <h3>Purchase History</h3>
+                <div class="history-content">
+                    <p class="no-selection">Select a customer to view purchase history</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
